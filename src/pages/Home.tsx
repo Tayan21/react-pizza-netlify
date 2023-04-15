@@ -2,22 +2,19 @@ import React from "react";
 
 import { Categories } from "../components/Categories";
 import { PizzaBlock } from "../components/PizzaBlock/PizzaBlock";
-import { Sort, sortList } from "../components/Sort";
+import { Sort } from "../components/Sort";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import { Pagination } from "../components/Pagination/Pagination";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   selectFilter,
   setCategoryId,
   setCurrentPage,
-  setFilters,
 } from "../components/Redux/slices/filterSlice";
-import { useNavigate, Link } from "react-router-dom";
-import qs from "qs";
+//import { useNavigate, Link } from "react-router-dom";
 import {
   fetchPizzas,
   selectPizzaData,
-  TSearchPizzaPrarms,
 } from "../components/Redux/slices/pizzaSlice";
 import { useAppDispatch } from "../components/Redux/store";
 
@@ -25,9 +22,9 @@ export const Home: React.FC = () => {
   const { categoryId, sort, currentPage, searchValue } =
     useSelector(selectFilter);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const isSearch = React.useRef(false);
-  const isMounted = React.useRef(false);
+  //const navigate = useNavigate();
+  //const isSearch = React.useRef(false);
+  //const isMounted = React.useRef(false);
   const { items, status } = useSelector(selectPizzaData);
 
   const onChangeCategory = React.useCallback((index: number) => {
