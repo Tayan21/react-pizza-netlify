@@ -20,7 +20,7 @@ type TPizza = {
   id: string;
   title: string;
   types: number[];
-  price: number;
+  price: number[];
   sizes: number[];
   imageUrl: string;
 };
@@ -68,21 +68,6 @@ const pizzaSlice = createSlice({
     });   
 
   }
-
-  // extraReducers: {
-  //   [fetchPizzas.pending]: (state) => {
-  //     state.status = "loading";
-  //     state.items = [];
-  //   },
-  //   [fetchPizzas.fulfilled]: (state, action) => {
-  //     state.items = action.payload;
-  //     state.status = "success";
-  //   },
-  //   [fetchPizzas.rejected]: (state, action) => {
-  //     state.items = [];
-  //     state.status = "error";
-  //   },
-  // },
 });
 
 export const selectPizzaData = (state: RootState) => state.pizza;

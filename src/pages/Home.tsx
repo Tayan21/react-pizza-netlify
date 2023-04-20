@@ -11,7 +11,6 @@ import {
   setCategoryId,
   setCurrentPage,
 } from "../components/Redux/slices/filterSlice";
-//import { useNavigate, Link } from "react-router-dom";
 import {
   fetchPizzas,
   selectPizzaData,
@@ -22,9 +21,7 @@ export const Home: React.FC = () => {
   const { categoryId, sort, currentPage, searchValue } =
     useSelector(selectFilter);
   const dispatch = useAppDispatch();
-  //const navigate = useNavigate();
-  //const isSearch = React.useRef(false);
-  //const isMounted = React.useRef(false);
+
   const { items, status } = useSelector(selectPizzaData);
 
   const onChangeCategory = React.useCallback((index: number) => {
@@ -54,44 +51,6 @@ export const Home: React.FC = () => {
     window.scrollTo(0, 0);
   };
 
-  //Если изменили параметры и был первый рендер
-  // React.useEffect(() => {
-  //   if (isMounted.current) {
-  //     const queryString = qs.stringify({
-  //       sortProperty: sort.sortProperty,
-  //       categoryId,
-  //       currentPage,
-  //     });
-
-  //     navigate(`?${queryString}`);
-  //   }
-
-  //   if (!window.location.search) {
-  //     dispatch(fetchPizzas({} as TSearchPizzaPrarms))
-  //   }
-  //   isMounted.current = true;
-  // }, [categoryId, sort.sortProperty, searchValue, currentPage]);
-
-  //Если был первый рендер то проверяем URL-параметрыи сохраняем в редаксе
-  // React.useEffect(() => {
-  //   if (window.location.search) {
-  //     const params = (qs.parse(window.location.search.substring(1))) as unknown as TSearchPizzaPrarms;
-
-  //     const sort = sortList.find(
-  //       (obj) => obj.sortProperty === params.sortBy
-  //     );
-
-  //     dispatch(
-  //       setFilters({
-  //         searchValue: params.search,
-  //         categoryId: Number(params.category),
-  //         currentPage: Number(params.currentPage),
-  //         sort: sort ? sort : sortList[0],
-  //       })
-  //     );
-  //     isSearch.current = true;
-  //   }
-  // }, []);
 
   //Если был первый рендер то запрашиваем пиццы
   React.useEffect(() => {

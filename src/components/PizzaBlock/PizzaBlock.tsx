@@ -9,7 +9,7 @@ type PizzaBlockProps = {
   id: string;
   title: string;
   types: number[];
-  price: number;
+  price: number[];
   sizes: number[];
   imageUrl: string;  
 }
@@ -17,6 +17,7 @@ type PizzaBlockProps = {
 export const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, title, price, imageUrl, sizes, types }) => {
   const [activeType, setActiveType] = React.useState(1);
   const [activeSize, setActiveSize] = React.useState(1);
+  const [activePrice, setActivePrice] = React.useState(1);
   const dispatch = useDispatch()
   const cartItem = useSelector(selectCartItemById(id))
 
@@ -26,7 +27,7 @@ export const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, title, price, imageU
     const item: TCartItem = {
       id,
       title,
-      price, 
+      price: price[activePrice], 
       imageUrl,
       type: typeNames[activeType],
       size: sizes[activeSize],
@@ -58,7 +59,10 @@ export const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, title, price, imageU
             {sizes.map((size, i) => (
               <li
                 key={size}
-                onClick={() => setActiveSize(i)}
+                onClick={() => {
+                  setActiveSize(i)
+                  setActivePrice(i)
+                }}
                 className={activeSize === i ? "active" : ""}
               >
                 {size} см.
@@ -67,7 +71,7 @@ export const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, title, price, imageU
           </ul>
         </div>
         <div className="pizza-block__bottom">
-          <div className="pizza-block__price">от {price} ₽</div>
+          <div className="pizza-block__price">{price[activePrice]} ₸</div>
           <button onClick={onCLickAdd} className="button button--outline button--add">
             <svg
               width="12"
